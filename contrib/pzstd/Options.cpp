@@ -40,7 +40,7 @@ unsigned defaultNumThreads() {
   if(const char* max_cpus = std::getenv("ROCKSDB_MAX_CPUS")) {
     return atoi(max_cpus);
   }
-  std::thread::hardware_concurrency());
+  return 2;
 #endif
 }
 
