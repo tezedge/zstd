@@ -37,7 +37,10 @@ unsigned defaultNumThreads() {
 #ifdef PZSTD_NUM_THREADS
   return PZSTD_NUM_THREADS;
 #else
-  return std::thread::hardware_concurrency();
+  if(const char* max_cpus = std::getenv("ROCKSDB_MAX_CPUS")) {
+    return atoi(max_cpus);
+  }
+  std::thread::hardware_concurrency());
 #endif
 }
 
